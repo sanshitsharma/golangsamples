@@ -1,2 +1,1 @@
 # golangsamples
-GOLang Sample Programs
