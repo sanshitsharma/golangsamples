@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// Given a string, check if it's a palindrome. If not, check if it can be converted to palindrome
+// by removing at most 1 character
 func canBePalindrome(str string) bool {
 	if str == "" {
 		return false
@@ -51,10 +53,6 @@ func canBePalindrome(str string) bool {
 }
 
 func main() {
-	//fmt.Println(`Given a string, check if it's a palindrome. If not, check if it can be converted to palindrome
-	//by removing at most 1 character`)
-
 	str := "abdcba"
 	canBePalindrome(str)
-	//fmt.Println(`'` + str + `'`,"is Palindrome:", canBePalindrome(str))
 }
