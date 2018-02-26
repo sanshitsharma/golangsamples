@@ -4,7 +4,7 @@ import (
 	"github.com/gogo/protobuf/proto"
 	"io/ioutil"
 	"log"
-	pb "sansshar_progs/proto_tutorial/proto"
+	pb "github.com/sanshitsharma/golangsamples/proto_tutorial/proto"
 )
 
 var id int32
