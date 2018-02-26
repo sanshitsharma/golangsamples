@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"github.com/sanshitsharma/golangsamples/ds/heap"
 	"errors"
+	"fmt"
+
+	"github.com/sanshitsharma/golangsamples/ds/heap"
 )
 
 func findMedian(list []int, k int) (int, error) {
@@ -19,7 +20,7 @@ func findMedian(list []int, k int) (int, error) {
 		lo.Insert(elem)
 
 		// if size diff between lo and hi > 1, then offer the top element in lo to hi
-		if lo.Size() - hi.Size() > 1 {
+		if lo.Size()-hi.Size() > 1 {
 			loTop, _ := lo.Pop()
 			hi.Insert(loTop)
 		}
@@ -35,12 +36,12 @@ func findMedian(list []int, k int) (int, error) {
 	// If the number of elements processed is odd, then return the top of lo
 	// else return the mean of top of lo & hi
 	if !lo.IsEmpty() {
-		if (lo.Size() + hi.Size())%2 != 0 {
+		if (lo.Size()+hi.Size())%2 != 0 {
 			return lo.Peek()
 		} else {
 			loTop, _ := lo.Peek()
 			hiTop, _ := hi.Peek()
-			return (loTop + hiTop)/2, nil
+			return (loTop + hiTop) / 2, nil
 		}
 	}
 
@@ -55,7 +56,6 @@ func main() {
 	if median, err := findMedian(list, k); err != nil {
 		fmt.Println(err)
 	} else {
-		//sublist := list[0:k+1]
 		fmt.Printf("median for %v at index %v = '%v'\n", list[0:k+1], k, median)
 	}
 }
