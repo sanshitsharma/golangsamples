@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
 type DevDetails struct {
-	Uuid   string	`json:"uuid"`
-	Ipaddr string	`json:"ipaddr"`
+	Uuid   string `json:"uuid"`
+	Ipaddr string `json:"ipaddr"`
 }
 
 func main() {
