@@ -6,18 +6,18 @@ import (
 )
 
 type myStruct struct {
-	Name 	     string `json:"name"`
-	Id 	     uint32 `json:"id"`
-	IsRegistered bool `json:"is_registered"`
+	Name         string `json:"name"`
+	ID           uint32 `json:"id"`
+	IsRegistered bool   `json:"is_registered"`
 	Phones       []string
 }
 
 func main() {
 	myInst := &myStruct{
-		Name: "Sanshit Sharma",
-		Id: 1806,
+		Name:         "Sanshit Sharma",
+		ID:           1806,
 		IsRegistered: true,
-		Phones: []string{"513-549-1487", "408-250-5749"},
+		Phones:       []string{"513-549-1487", "408-250-5749"},
 	}
 
 	myInstBytes, err := json.Marshal(myInst)
@@ -27,4 +27,3 @@ func main() {
 		fmt.Printf("myInstString: '%v'\n", string(myInstBytes))
 	}
 }
-
