@@ -20,7 +20,7 @@ func (list *List) Insert(data interface{}) {
 		list.Head = &Node{Data: data, Next: nil}
 		return
 	}
-	
+
 	curr := list.Head
 	for curr.Next != nil {
 		curr = curr.Next
@@ -67,7 +67,12 @@ func (list *List) Reverse() {
 
 //func (list *List) ReverseFromIndex()
 
+// Print prints the list to stdout in pretty format
 func (list *List) Print() {
+	if list.Head == nil {
+		return
+	}
+
 	curr := list.Head
 
 	for curr.Next != nil {
