@@ -88,25 +88,43 @@ func stackUsage() {
 }
 
 func qUsage() {
-	q := queue.NewQueue(3)
+	size := 3
+	q := queue.NewQueue(size)
 
-	if err := q.Enqueue(10); err != nil {
-		fmt.Println(err)
-	}
-	if err := q.Enqueue(20); err != nil {
-		fmt.Println(err)
-	}
-	if err := q.Enqueue(30); err != nil {
-		fmt.Println(err)
-	}
-	if err := q.Enqueue(40); err != nil {
-		fmt.Println(err)
+	nums := []int{10, 20, 30, 40}
+	for _, num := range(nums) {
+		if err := q.Enqueue(num); err != nil {
+			fmt.Printf("failed to insert: '%v'. err: '%v'\n", num, err)
+		}
 	}
 
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
+	q.Print()
+
+	for i := 0; i < size+1; i++ {
+		if val, err := q.Dequeue(); err != nil {
+			fmt.Printf("failed to dequeue.. err: '%v'\n", err)
+		} else {
+			fmt.Printf("Dequeued: value = '%v'\n", val)
+		}
+	}
+}
+
+func linkQUsage() {
+	q := queue.NewLinkQueue()
+	nums := []interface{}{10, 20, 30, 40, "abc"}
+	for _, num := range(nums) {
+		q.Enqueue(num)
+	}
+
+	q.Print()
+
+	for i := 0; i < 5; i++ {
+		if val := q.Dequeue(); val == nil {
+			fmt.Printf("failed to dequeue.. queue is empty")
+		} else {
+			fmt.Printf("Dequeued: value = '%v'\n", val)
+		}
+	}
 }
 
 func swapInPairs(list *llist.List) error {
@@ -169,5 +187,9 @@ func main() {
 	*/
 
 	// Queue Usage
-	qUsage()
+	//qUsage()
+
+	// LinkQueue Usage
+	linkQUsage()
+
 }

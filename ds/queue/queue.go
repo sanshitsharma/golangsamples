@@ -2,6 +2,8 @@ package queue
 
 import (
 	"errors"
+	list "github.com/sanshitsharma/golangsamples/ds/linked_list"
+	"fmt"
 )
 
 // Queue represent the queue DS
@@ -66,4 +68,59 @@ func (q *Queue) Dequeue() (interface{}, error) {
 	q.front++
 
 	return elem, nil
+}
+
+// Print displays the Queue
+func (q *Queue) Print() {
+	for _, item := range(q.elems) {
+		fmt.Printf("%v ", item)
+	}
+	fmt.Println()
+}
+
+// LinkQueue creates a queue using linkedlist
+type LinkQueue struct {
+	front *list.Node
+	rear *list.Node
+}
+
+func NewLinkQueue() *LinkQueue {
+	return &LinkQueue{
+		front: nil,
+		rear: nil,
+	}
+}
+
+// Enqueue adds a value to rear of LinkQueue
+func (q *LinkQueue) Enqueue(val interface{}) {
+	if q.rear == nil {
+		q.rear = &list.Node{Data: val, Next: nil}
+		q.front = q.rear
+		return
+	}
+
+	q.rear.Next = &list.Node{Data: val, Next: nil}
+	q.rear = q.rear.Next
+}
+
+// Dequeue removes a from front of LinkQueue. Returns nil if list is empty
+func (q *LinkQueue) Dequeue() interface{} {
+	if q.front == nil {
+		return nil
+	}
+
+	rv := q.front.Data
+	q.front = q.front.Next
+	return rv
+}
+
+// Print displays the LinkQueue
+func (q *LinkQueue) Print() {
+	curr := q.front
+	for curr != nil {
+		fmt.Printf("%v ", curr.Data)
+		curr = curr.Next
+	}
+
+	fmt.Println()
 }
