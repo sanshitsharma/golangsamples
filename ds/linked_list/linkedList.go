@@ -82,3 +82,16 @@ func (list *List) Print() {
 
 	fmt.Printf("%v\n", curr.Data)
 }
+
+// Delete removes an element from the head of the linked list
+// and returns its value. Returns nil is the list is empty
+func (list *List) Delete() interface{} {
+	if list.Head == nil {
+		return nil
+	}
+
+	rv := list.Head.Data
+	list.Head = list.Head.Next
+
+	return rv
+}
