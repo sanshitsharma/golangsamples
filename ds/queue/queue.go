@@ -2,8 +2,9 @@ package queue
 
 import (
 	"errors"
-	list "github.com/sanshitsharma/golangsamples/ds/linked_list"
 	"fmt"
+
+	list "github.com/sanshitsharma/golangsamples/ds/linked_list"
 )
 
 // Queue represent the queue DS
@@ -72,7 +73,7 @@ func (q *Queue) Dequeue() (interface{}, error) {
 
 // Print displays the Queue
 func (q *Queue) Print() {
-	for _, item := range(q.elems) {
+	for _, item := range q.elems {
 		fmt.Printf("%v ", item)
 	}
 	fmt.Println()
@@ -81,13 +82,14 @@ func (q *Queue) Print() {
 // LinkQueue creates a queue using linkedlist
 type LinkQueue struct {
 	front *list.Node
-	rear *list.Node
+	rear  *list.Node
 }
 
+// NewLinkQueue creates a linked list based queue
 func NewLinkQueue() *LinkQueue {
 	return &LinkQueue{
 		front: nil,
-		rear: nil,
+		rear:  nil,
 	}
 }
 
