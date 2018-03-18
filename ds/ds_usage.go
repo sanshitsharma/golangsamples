@@ -8,6 +8,7 @@ import (
 	llist "github.com/sanshitsharma/golangsamples/ds/linked_list"
 	"github.com/sanshitsharma/golangsamples/ds/queue"
 	"github.com/sanshitsharma/golangsamples/ds/stack"
+	"github.com/sanshitsharma/golangsamples/ds/trie"
 )
 
 func linkedListUsage() {
@@ -163,11 +164,33 @@ func swapInPairs(list *llist.List) error {
 
 	return nil
 }
-func main() {
-	//linkedListUsage()
-	//heapUsage()
-	//stackUsage()
 
+func trieUsage() {
+	t := trie.NewTrie()
+
+	t.Insert(`abcde`)
+	t.Insert(`abc`)
+	t.Insert(`bdcx`)
+	t.Insert(`opqr`)
+	t.Insert(`s`)
+
+	str := `s`
+	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
+
+	str = `sanshit`
+	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
+
+	str = `abc`
+	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
+
+	str = `abcd`
+	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
+
+	str = `abcde`
+	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
+}
+
+func main() {
 	/*
 		// Given a linkedlist, swap the nodes in pairs
 		list := llist.InitList()
@@ -186,10 +209,25 @@ func main() {
 		list.Print()
 	*/
 
+	fmt.Println("------------------------ Linked List Usage -------------------------")
+	linkedListUsage()
+
+	fmt.Println("\n--------------------------- Heap Usage -----------------------------")
+	heapUsage()
+
+	fmt.Println("\n-------------------------- Stack Usage -----------------------------")
+	stackUsage()
+
 	// Queue Usage
-	//qUsage()
+	fmt.Println("\n------------------------ Array Queue Usage -------------------------")
+	qUsage()
 
 	// LinkQueue Usage
+	fmt.Println("\n------------------------- List Queue Usage -------------------------")
 	linkQUsage()
+
+	// Trie Usage
+	fmt.Println("\n---------------------------- TRIE Usage ----------------------------")
+	trieUsage()
 
 }
