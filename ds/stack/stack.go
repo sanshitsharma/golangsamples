@@ -6,14 +6,14 @@ import (
 )
 
 type Stack struct {
-	top *Node
-	middle *Node
+	top           *Node
+	middle        *Node
 	midUpdCounter int
-	elemCounter int
+	elemCounter   int
 }
 
 func NewStack() *Stack {
-	return &Stack{top: nil, middle:nil, midUpdCounter: 0}
+	return &Stack{top: nil, middle: nil, midUpdCounter: 0}
 }
 
 func (stack *Stack) Push(value interface{}) {
@@ -24,7 +24,7 @@ func (stack *Stack) Push(value interface{}) {
 		return
 	}
 
-	fmt.Println("Pushing.. ", value, " curr mid:", stack.middle.value, " mid counter:", stack.midUpdCounter)
+	//fmt.Println("Pushing.. ", value, " curr mid:", stack.middle.value, " mid counter:", stack.midUpdCounter)
 	// Create a new node
 	node := newNode(value)
 
@@ -38,7 +38,7 @@ func (stack *Stack) Push(value interface{}) {
 	stack.elemCounter += 1
 
 	if stack.midUpdCounter == 2 {
-		fmt.Println("modifying mid after push.. curr mid:", stack.middle.value)
+		//fmt.Println("modifying mid after push.. curr mid:", stack.middle.value)
 		// Modify mid
 		stack.middle = stack.middle.next
 		stack.midUpdCounter = 0
@@ -50,10 +50,12 @@ func (stack *Stack) Pop() (interface{}, error) {
 		return nil, errors.New("empty stack")
 	}
 
-	fmt.Println("Popping.. curr mid:", stack.middle.value, " mid counter:", stack.midUpdCounter)
+	//fmt.Println("Popping.. curr mid:", stack.middle.value, " mid counter:", stack.midUpdCounter)
 	val := stack.top.value
 	temp := stack.top.prev
-	temp.next = nil
+	if temp != nil {
+		temp.next = nil
+	}
 	stack.top.prev = nil
 	stack.top = temp
 
@@ -69,7 +71,22 @@ func (stack *Stack) Pop() (interface{}, error) {
 	return val, nil
 }
 
-func (stack *Stack) FindMiddle() (interface{}, error){
+// Peek returns the top element of the stack without removing
+// it from the stack
+func (stack *Stack) Peek() (interface{}, error) {
+	if stack.top == nil {
+		return nil, errors.New("empty stack")
+	}
+
+	return stack.top.value, nil
+}
+
+// IsEmpty checks if the stack is empty
+func (stack *Stack) IsEmpty() bool {
+	return stack.top == nil
+}
+
+func (stack *Stack) FindMiddle() (interface{}, error) {
 	if stack.top == nil {
 		return nil, errors.New(`empty stack`)
 	}
