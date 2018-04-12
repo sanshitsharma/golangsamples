@@ -9,7 +9,8 @@ import (
 func quickSortSample() {
 	fmt.Println("Example of quicksort")
 
-	a := []int{2, 7, 1, 3, 6, 4}
+	//a := []int{10, 9, 8, 7, 5, 1}
+	a := []int{1, 5, 7, 8, 9, 10}
 	qs.Sort(a)
 
 	fmt.Println(a)

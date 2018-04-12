@@ -8,6 +8,7 @@ import (
 	llist "github.com/sanshitsharma/golangsamples/ds/linked_list"
 	"github.com/sanshitsharma/golangsamples/ds/queue"
 	"github.com/sanshitsharma/golangsamples/ds/stack"
+	"github.com/sanshitsharma/golangsamples/ds/trees"
 	"github.com/sanshitsharma/golangsamples/ds/trie"
 )
 
@@ -58,7 +59,9 @@ func stackUsage() {
 	stk := stack.NewStack()
 
 	stk.Push(1)
-	stk.Push(2)
+	//stk.Push(2)
+
+	stk.Pop()
 
 	fmt.Println(stk.FindMiddle())
 
@@ -93,7 +96,7 @@ func qUsage() {
 	q := queue.NewQueue(size)
 
 	nums := []int{10, 20, 30, 40}
-	for _, num := range(nums) {
+	for _, num := range nums {
 		if err := q.Enqueue(num); err != nil {
 			fmt.Printf("failed to insert: '%v'. err: '%v'\n", num, err)
 		}
@@ -113,7 +116,7 @@ func qUsage() {
 func linkQUsage() {
 	q := queue.NewLinkQueue()
 	nums := []interface{}{10, 20, 30, 40, "abc"}
-	for _, num := range(nums) {
+	for _, num := range nums {
 		q.Enqueue(num)
 	}
 
@@ -190,6 +193,82 @@ func trieUsage() {
 	fmt.Printf("isExists('%v') = %v\n", str, t.Search(str))
 }
 
+func bstUsage() {
+	bst := trees.NewBST()
+
+	bst = bst.Insert(10)
+	bst = bst.Insert(5)
+	bst = bst.Insert(2)
+	bst = bst.Insert(7)
+	bst = bst.Insert(15)
+	bst = bst.Insert(12)
+	bst = bst.Insert(17)
+
+	fmt.Println("In order traversal")
+	bst.Inorder()
+	fmt.Printf("\n\n")
+
+	fmt.Println("Pre order traversal")
+	bst.Preorder()
+	fmt.Printf("\n\n")
+
+	if node, err := bst.Search(17); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("found", node.Data)
+	}
+
+	if node, err := bst.Search(21); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("found", node.Data)
+	}
+
+	fmt.Println()
+	// Find parent
+	values := []int{15, 12, 10, 21}
+	for _, trgt := range values {
+		if parent, err := bst.Parent(trgt); err != nil {
+			fmt.Printf("No parent found for '%v'. error: '%v'\n", trgt, err)
+		} else {
+
+			if parent == nil {
+				fmt.Printf("'%v' is the root node of tree. No Parent\n", trgt)
+			} else {
+				fmt.Printf("Parent of '%v' --> '%v'\n", trgt, parent.Data)
+			}
+		}
+	}
+
+	bst, err := bst.Delete(12)
+	if err != nil {
+		fmt.Println("Failed to delete node")
+	}
+	fmt.Println("Pre order traversal")
+	bst.Preorder()
+	fmt.Printf("\n\n")
+
+	fmt.Println("Construct a BST from preorder traversal")
+	values = []int{10, 5, 1, 7, 40, 50}
+	//values = []int{10, 5, 3, 1}
+	//values = []int{10, 40, 50}
+	bst2 := trees.ConstructTree(values)
+
+	fmt.Println("Pre order traversal")
+	bst2.Preorder()
+	fmt.Printf("\n\n")
+
+	fmt.Println("Construct a BST from preorder traversal iteratively")
+	values = []int{10, 5, 1, 7, 40, 50}
+	//values = []int{10, 5, 3, 1}
+	//values = []int{10, 40, 50}
+	bst3 := trees.ConstructTreeIter(values)
+
+	fmt.Println("Pre order traversal")
+	bst3.Preorder()
+	fmt.Printf("\n\n")
+}
+
 func main() {
 	/*
 		// Given a linkedlist, swap the nodes in pairs
@@ -230,4 +309,7 @@ func main() {
 	fmt.Println("\n---------------------------- TRIE Usage ----------------------------")
 	trieUsage()
 
+	// BST Usage
+	fmt.Println("\n---------------------------- BST Usage -----------------------------")
+	bstUsage()
 }

@@ -11,6 +11,7 @@ type List struct {
 	Head *Node
 }
 
+// InitList returns a new list
 func InitList() *List {
 	return &List{Head: nil}
 }
@@ -94,4 +95,17 @@ func (list *List) Delete() interface{} {
 	list.Head = list.Head.Next
 
 	return rv
+}
+
+// Count returns the number of elements in the list
+func (list *List) Count() int {
+	curr := list.Head
+	count := 0
+
+	for curr != nil {
+		count++
+		curr = curr.Next
+	}
+
+	return count
 }

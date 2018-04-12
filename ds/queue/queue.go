@@ -105,6 +105,10 @@ func (q *LinkQueue) Enqueue(val interface{}) {
 	q.rear = q.rear.Next
 }
 
+func (q *LinkQueue) IsEmpty() bool {
+	return q.front == nil && q.rear == nil
+}
+
 // Dequeue removes a from front of LinkQueue. Returns nil if list is empty
 func (q *LinkQueue) Dequeue() interface{} {
 	if q.front == nil {
@@ -112,8 +116,24 @@ func (q *LinkQueue) Dequeue() interface{} {
 	}
 
 	rv := q.front.Data
+	if q.front == q.rear {
+		q.front = nil
+		q.rear = nil
+		return rv
+	}
+
 	q.front = q.front.Next
 	return rv
+}
+
+// Peek returns the value at front of queue
+// without removing it
+func (q *LinkQueue) Peek() interface{} {
+	if q.front == nil {
+		return nil
+	}
+
+	return q.front.Data
 }
 
 // Print displays the LinkQueue
