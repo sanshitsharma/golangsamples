@@ -13,5 +13,15 @@ func main() {
 	visualization := fsm.Visualize(initFsm)
 	fmt.Println(visualization)
 
-	initFsm.Event(initfsm.Start)
+	initFsm.Event(initfsm.Start, "optional", "arguments")
+	/*
+		fmt.Println()
+		initFsm.Event(initfsm.CritReady)
+		fmt.Println()
+		initFsm.Event(initfsm.CritFail)
+		fmt.Println()
+		initFsm.Event(initfsm.CritReady)
+		fmt.Println()
+		initFsm.Event(initfsm.OptReady)
+	*/
 }

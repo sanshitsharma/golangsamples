@@ -1,5 +1,6 @@
 package initfsm
 
+// Init FSM States
 const (
 	// None state is an invalid state
 	None string = "None"
@@ -13,20 +14,29 @@ const (
 	Yellow string = "Yellow"
 	// Green state is entered after module all critcal & optional dependencies are determined live
 	Green string = "Green"
+	// Stop state is entered upon receiving a Abort event
+	Stop string = "Stop"
 )
 
-// Events
+// Init FSM Events
 const (
 	// Start event kick starts the fsm
 	Start string = "Start"
 	// ModuleReady event is sent one all internal manager components are successfully initialized
 	ModuleReady string = "ModuleReady"
-	// CritReady event is sent once all the critical external dependencies' liveliness have been received
-	CritReady string = "CritReady"
-	// OptReady event is sent once all the optional external dependencies' liveliness have been received
-	OptReady string = "OptReady"
-	// CriticalFail event is sent when one of the critical dependencies' liveliness check fails
-	CritFail string = "CritFail"
-	// OptionalFail event is sent when one of the optional dependencies' liveliness check fails
-	OptFail string = "OptFail"
+	// EssReady event is sent once all the critical dependencies' liveliness have been received
+	EssReady string = "EssentialReady"
+	// EssFail event is sent when one of the critical dependencies' liveliness check fails
+	EssFail string = "EssentialFail"
+	// AuxReady event is sent once all the secondary dependencies' liveliness have been received
+	AuxReady string = "AuxiliaryReady"
+	// AuxFail event is sent when one of the secondary dependencies' liveliness check fails
+	AuxFail string = "AuxFail"
+	// OptReady event is sent when all components in Green state are ready
+	OptReady string = "OptionalReady"
+	// OptFail event is sent when one or more green state components' liveliness check fails
+	OptFail string = "OptionalFail"
+
+	// Abort event is posted if a skeleton shutdown is received or basic init fails
+	Abort string = "Abort"
 )
