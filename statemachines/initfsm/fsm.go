@@ -19,18 +19,15 @@ func beforeStartCb(e *fsm.Event) {
 // CreateInitFSM returns a new FSM object
 func CreateInitFSM() *fsm.FSM {
 	transitions := []fsm.EventDesc{
-		{Name: Start, Src: []string{Idle}, Dst: Red},
+		{Name: StartM, Src: []string{Idle}, Dst: Red},
 
-		{Name: EssReady, Src: []string{Red}, Dst: Yellow},
-		{Name: EssFail, Src: []string{Red, Yellow, Green}, Dst: Red},
+		{Name: VitalReady, Src: []string{Red, Yellow}, Dst: Yellow},
+		{Name: VitalFail, Src: []string{Red, Yellow, Green}, Dst: Red},
 
-		{Name: AuxReady, Src: []string{Yellow}, Dst: Green},
-		{Name: AuxFail, Src: []string{Yellow, Green}, Dst: Yellow},
+		{Name: EssReady, Src: []string{Yellow, Green}, Dst: Green},
+		{Name: EssFail, Src: []string{Yellow, Green}, Dst: Yellow},
 
-		{Name: OptReady, Src: []string{Green}, Dst: Green},
-		{Name: OptFail, Src: []string{Green}, Dst: Green},
-
-		{Name: Abort, Src: []string{Idle, Red, Yellow, Green}, Dst: Stop},
+		{Name: Shutdown, Src: []string{Idle, Red, Yellow, Green}, Dst: Stop},
 	}
 	var initFsm = fsm.NewFSM(
 		Idle,
@@ -50,9 +47,10 @@ func CreateInitFSM() *fsm.FSM {
 				fmt.Println("CB: Leaving state. state:", e.Src)
 			},
 
-			//before_<event> callbacks
+			// before_<event> callbacks
 			"before_Start": beforeStartCb,
 		},
 	)
+	
 	return initFsm
 }
