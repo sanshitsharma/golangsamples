@@ -1,0 +1,22 @@
+{
+  "RELEASE": {
+    "PKG_NAME": "release",
+    "APPID": "ab50ccb0-f352-448b-aedb-0961cacd4bcb",
+    "QUAY_REPO": "release",
+    "CHANNEL": "jenkins"
+  },
+  "MANIFEST": {
+    "APPS": [{
+      "NAME": "foo",
+      "UUID": "01541dc2-bcaf-45d7-999f-f1de95662d1b",
+      "TYPE": "test",
+      "PATH": "foo/foo.sh"
+    },
+      {
+        "NAME": "bar",
+        "UUID": "7cd4b85e-3809-42dc-8d2e-cb607e269130",
+        "TYPE": "test"
+      }
+    ]
+  }
+}

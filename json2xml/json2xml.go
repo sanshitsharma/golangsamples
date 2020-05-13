@@ -102,7 +102,7 @@ func main() {
 	app.Name = "jsonToXml"
 	app.Usage = "A simple custom json to xml converter"
 	app.Authors = []cli.Author{
-		cli.Author{
+		{
 			Name:  "Sanshit Sharma",
 			Email: "present87@gmail.com",
 		},
